@@ -42,9 +42,25 @@ document.addEventListener("click", function (e) {
 
 // modal box
 const itemDetailModal = document.querySelector("#item-detail-modal");
-const itemDetailButton = document.querySelector(".item-detail-btn");
+const itemDetailButtons = document.querySelectorAll(".item-detail-btn");
 
-itemDetailButton.onclick = (e) => {
-  itemDetailModal.style.display = "flex";
+itemDetailButtons.forEach((btn) => {
+  btn.onclick = (e) => {
+    itemDetailModal.style.display = "flex";
+    e.preventDefault();
+  };
+});
+
+// klik tomblo close
+document.querySelector(".modal .close-icon").onclick = (e) => {
+  itemDetailModal.style.display = "none";
   e.preventDefault();
+};
+
+// klik diluar modal
+
+window.onclick = (e) => {
+  if (e.target === itemDetailModal) {
+    itemDetailModal.style.display = "none";
+  }
 };
